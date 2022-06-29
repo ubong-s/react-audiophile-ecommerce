@@ -65,6 +65,24 @@ const bodyStyles = css`
       /* background: ${(props) => props.theme.grey_light};
       color: ${(props) => props.theme.grey_dark}; */
    }
+
+   button {
+      cursor: pointer;
+      border-color: transparent;
+      background-color: transparent;
+      outline: none;
+      text-transform: uppercase;
+      font-weight: 700;
+   }
+
+   .container {
+      width: 90%;
+      margin: auto;
+
+      @media screen and (min-width: ${breakpoints.desktop}) {
+         width: 80%;
+      }
+   }
 `;
 
 export const GlobalStyles = createGlobalStyle`

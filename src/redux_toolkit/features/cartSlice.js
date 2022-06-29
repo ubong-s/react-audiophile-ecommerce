@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-   value: 0,
+   totalItems: 0,
 };
 
 export const cartSlice = createSlice({
    name: 'cart',
    initialState,
-   reducers: {},
+   reducers: {
+      updateCart: (state) => {},
+   },
 });
 
 // Action creators are generated for each case reducer function
-export const {} = cartSlice.actions;
+export const { updateCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
