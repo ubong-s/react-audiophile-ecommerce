@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+const HomePage = lazy(() => import('./pages'));
+const Earphones = lazy(() => import('./pages/products/earphones'));
+const Headphones = lazy(() => import('./pages/products/headphones'));
+const Speakers = lazy(() => import('./pages/products/speakers'));
+const SingleProductPage = lazy(() => import('./pages/product'));
+const NotFound = lazy(() => import('./pages/404'));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <>
+         <Router>
+            <Suspense fallback='Loading...'>
+               <Routes>
+                  <Route exact path='/' element={<HomePage />} />
+                  <Route
+                     exact
+                     path='/products/earphones'
+                     element={<Earphones />}
+                  />
+                  <Route
+                     exact
+                     path='/products/speakers'
+                     element={<Speakers />}
+                  />
+                  <Route
+                     exact
+                     path='/products/headphones'
+                     element={<Headphones />}
+                  />
+                  <Route
+                     exact
+                     path='/product/:slug'
+                     element={<SingleProductPage />}
+                  />
+
+                  <Route path='*' element={<NotFound />} />
+               </Routes>
+            </Suspense>
+         </Router>
+      </>
+   );
 }
 
 export default App;
