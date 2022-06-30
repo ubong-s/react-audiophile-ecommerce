@@ -14,7 +14,7 @@ export default Button;
 
 const ButtonWrap = styled.button`
    border: ${(props) => props.theme.black} 2px solid;
-   padding: 0.75rem 2.5rem;
+   padding: 1rem 2.5rem;
    background-color: ${(props) => props.theme.black};
    color: ${(props) => props.theme.white};
    transition: ${misc.transition.ease};
