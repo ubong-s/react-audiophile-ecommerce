@@ -32,7 +32,7 @@ const breakpoints = {
    mobile: '375px',
    tablet: '768px',
    desktop: '1024px',
-   large: '1100px',
+   large: '1280px',
    hd: '1440px',
 };
 

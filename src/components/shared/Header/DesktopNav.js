@@ -7,8 +7,6 @@ import { breakpoints } from '../../../styles/theme';
 const DesktopNav = () => {
    const location = useLocation();
 
-   console.log(location);
-
    return (
       <DesktopNavWrap>
          <Link to='/' className={location.pathname === '/' ? 'active' : null}>

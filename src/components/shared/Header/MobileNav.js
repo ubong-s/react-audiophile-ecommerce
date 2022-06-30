@@ -9,9 +9,7 @@ const MobileNav = () => {
    return (
       <>
          <MobileNavWrap className={menuOpen ? 'active' : null}>
-            <div className='container'>
-               <CategoriesGrid click='true' />
-            </div>
+            <CategoriesGrid click='true' />
          </MobileNavWrap>
          {/* <Overlay></Overlay> */}
       </>

@@ -30,8 +30,8 @@ const bodyStyles = css`
    h5,
    h6 {
       font-weight: ${typography.weight.bold};
-      letter-spacing: 0.5px;
-      line-height: 1.3;
+      letter-spacing: 1px;
+      line-height: 1.1;
       text-transform: uppercase;
       color: ${(props) => props.theme.black};
    }
@@ -73,6 +73,7 @@ const bodyStyles = css`
       outline: none;
       text-transform: uppercase;
       font-weight: 700;
+      letter-spacing: 2px;
    }
 
    .container {

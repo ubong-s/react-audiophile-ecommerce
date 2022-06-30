@@ -5,20 +5,20 @@ import { breakpoints, misc } from '../../styles/theme';
 import { closeMenu } from '../../redux_toolkit/features/globalSlice';
 import { categories } from '../../constants/menuNav';
 
-const CategoriesGrid = ({ click }) => {
+const CategoriesGrid = ({ click, page }) => {
    const dispatch = useDispatch();
    return (
-      <CategoriesGridWrap>
-         {categories.map((category) => (
-            <CategoryItem
-               key={category.id}
-               onClick={click ? () => dispatch(closeMenu()) : null}
-            >
-               <Link to={category.link}>
-                  <img src={category.image} alt={category.title} />
-                  <h4>{category.title}</h4>
-                  <button>
-                     <Link to={category.link}>
+      <div className='container'>
+         <CategoriesGridWrap className={page ? 'page' : null}>
+            {categories.map((category) => (
+               <CategoryItem
+                  key={category.id}
+                  onClick={click ? () => dispatch(closeMenu()) : null}
+               >
+                  <Link to={category.link}>
+                     <img src={category.image} alt={category.title} />
+                     <h4>{category.title}</h4>
+                     <button>
                         Shop
                         <span className='icon'>
                            <svg
@@ -29,18 +29,18 @@ const CategoriesGrid = ({ click }) => {
                               <path
                                  d='M1.322 1l5 5-5 5'
                                  stroke='#D87D4A'
-                                 stroke-width='2'
+                                 strokeWidth='2'
                                  fill='none'
                                  fillRule='evenodd'
                               />
                            </svg>
                         </span>
-                     </Link>
-                  </button>
-               </Link>
-            </CategoryItem>
-         ))}
-      </CategoriesGridWrap>
+                     </button>
+                  </Link>
+               </CategoryItem>
+            ))}
+         </CategoriesGridWrap>
+      </div>
    );
 };
 
@@ -50,8 +50,22 @@ const CategoriesGridWrap = styled.ul`
    display: grid;
    gap: 1rem;
 
+   &.page {
+      padding: 3rem 0 8rem;
+   }
+
    @media screen and (min-width: ${breakpoints.tablet}) {
       grid-template-columns: repeat(3, 1fr);
+
+      &.page {
+         padding: 5rem 0 7rem;
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      &.page {
+         padding: 6rem 0 9rem;
+      }
    }
 `;
 
@@ -86,13 +100,11 @@ const CategoryItem = styled.li`
    }
 
    button {
-      a {
-         color: ${(props) => props.theme.text};
-         line-height: 0;
+      color: ${(props) => props.theme.text};
+      line-height: 0;
 
-         &:hover {
-            color: ${(props) => props.theme.accent};
-         }
+      &:hover {
+         color: ${(props) => props.theme.accent};
       }
 
       .icon {
@@ -100,6 +112,13 @@ const CategoryItem = styled.li`
          align-items: center;
          margin-left: 0.5rem;
          line-height: 0;
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      img {
+         width: 200px;
+         height: 200px;
       }
    }
 `;
