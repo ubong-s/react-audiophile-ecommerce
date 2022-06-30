@@ -2,54 +2,48 @@ import styled from 'styled-components';
 import { breakpoints, misc } from '../../styles/theme';
 import Button from '../shared/Button';
 
-const ZX7Speaker = () => {
+const YX1Earphones = () => {
    return (
-      <ZX7SpeakerWrap>
-         <ZX7SpeakerInner className='container'>
+      <YX1EarphonesWrap>
+         <YX1EarphonesInner className='container'>
             <div className='image'>
                <img
-                  src='/assets/home/mobile/image-speaker-zx7.jpg'
+                  src='/assets/home/mobile/image-earphones-yx1.jpg'
                   alt='ZX7 Speaker'
                   className='mobile'
                />
                <img
-                  src='/assets/home/tablet/image-speaker-zx7.jpg'
+                  src='/assets/home/tablet/image-earphones-yx1.jpg'
                   alt='ZX7 Speaker'
                   className='tablet'
                />
                <img
-                  src='/assets/home/desktop/image-speaker-zx7.jpg'
+                  src='/assets/home/desktop/image-earphones-yx1.jpg'
                   alt='ZX7 Speaker'
                   className='desktop'
                />
             </div>
             <div className='content'>
-               <h2>ZX7 Speaker</h2>
-               <Button outline='true' text='See product' />
+               <div>
+                  <h2>YX1 Earphones</h2>
+                  <Button outline='true' text='See product' />
+               </div>
             </div>
-         </ZX7SpeakerInner>
-      </ZX7SpeakerWrap>
+         </YX1EarphonesInner>
+      </YX1EarphonesWrap>
    );
 };
 
-export default ZX7Speaker;
+export default YX1Earphones;
 
-const ZX7SpeakerWrap = styled.section`
-   padding: 2rem 0;
-
-   @media screen and (min-width: ${breakpoints.tablet}) {
-      padding: 3rem 0;
-   }
-`;
-
-const ZX7SpeakerInner = styled.div`
-   position: relative;
-   border-radius: ${misc.rounded.sm};
-   overflow: hidden;
-   line-height: 0;
+const YX1EarphonesWrap = styled.section``;
+const YX1EarphonesInner = styled.div`
+   display: grid;
+   gap: 2rem;
 
    .image {
       img {
+         border-radius: ${misc.rounded.sm};
          width: 100%;
       }
       .desktop,
@@ -59,11 +53,12 @@ const ZX7SpeakerInner = styled.div`
    }
 
    .content {
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      transform: translateY(-50%);
-      z-index: 2;
+      background-color: ${(props) => props.theme.gray};
+      border-radius: ${misc.rounded.sm};
+      height: 225px;
+      display: grid;
+      align-items: center;
+      padding-left: 2rem;
 
       h2 {
          font-size: 2rem;
@@ -72,6 +67,10 @@ const ZX7SpeakerInner = styled.div`
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+
       .image {
          .tablet {
             display: block;
@@ -84,11 +83,13 @@ const ZX7SpeakerInner = styled.div`
       }
 
       .content {
-         left: 7.5%;
+         height: auto;
       }
    }
 
    @media screen and (min-width: ${breakpoints.desktop}) {
+      gap: 2rem;
+
       .image {
          .desktop {
             display: block;
@@ -101,7 +102,7 @@ const ZX7SpeakerInner = styled.div`
       }
 
       .content {
-         left: 10%;
+         padding-left: 20%;
       }
    }
 `;
