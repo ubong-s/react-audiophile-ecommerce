@@ -1,7 +1,10 @@
+import styled from 'styled-components';
+import { breakpoints, misc } from '../../styles/theme';
+
 const BestGear = () => {
    return (
-      <div>
-         <div className='container'>
+      <BestGearWrap>
+         <BestGearInner className='container'>
             <div className='image'>
                <img
                   src='/assets/shared/mobile/image-best-gear.jpg'
@@ -19,7 +22,7 @@ const BestGear = () => {
                   className='desktop'
                />
             </div>
-            <div>
+            <div className='content'>
                <h2>
                   Bringing you the <span>best</span> audio gear
                </h2>
@@ -33,9 +36,101 @@ const BestGear = () => {
                   buy your portable audio equipment.
                </p>
             </div>
-         </div>
-      </div>
+         </BestGearInner>
+      </BestGearWrap>
    );
 };
 
 export default BestGear;
+
+const BestGearWrap = styled.section`
+   padding: 8rem 0 10rem;
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      padding: 14rem 0;
+   }
+`;
+
+const BestGearInner = styled.div`
+   display: grid;
+   gap: 3rem;
+   text-align: center;
+
+   .image {
+      .desktop,
+      .tablet {
+         display: none;
+      }
+
+      img {
+         border-radius: ${misc.rounded.sm};
+      }
+   }
+
+   .content {
+      h2 {
+         font-size: 2rem;
+         margin-bottom: 2.5rem;
+
+         span {
+            color: ${(props) => props.theme.accent};
+         }
+      }
+
+      p {
+         margin-bottom: 0;
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.tablet}) {
+      .image {
+         .tablet {
+            display: block;
+         }
+
+         .desktop,
+         .mobile {
+            display: none;
+         }
+      }
+
+      .content {
+         padding: 0 4rem;
+
+         h2 {
+            font-size: 2.5rem;
+         }
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      text-align: left;
+      grid-template-areas: 'content image';
+      gap: unset;
+
+      .image {
+         grid-area: image;
+
+         .desktop {
+            display: block;
+         }
+
+         .tablet,
+         .mobile {
+            display: none;
+         }
+      }
+
+      .content {
+         grid-area: content;
+         padding: 0;
+         margin-right: 7rem;
+
+         h2 {
+            /* font-size: 3rem; */
+         }
+      }
+   }
+`;

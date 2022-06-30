@@ -31,7 +31,7 @@ const bodyStyles = css`
    h6 {
       font-weight: ${typography.weight.bold};
       letter-spacing: 0.5px;
-      line-height: 1;
+      line-height: 1.3;
       text-transform: uppercase;
       color: ${(props) => props.theme.black};
    }
