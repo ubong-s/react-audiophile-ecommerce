@@ -46,8 +46,8 @@ const misc = {
    },
 
    transition: {
-      ease: 'all 0.3s ease-in-out',
-      linear: 'all 0.3s linear',
+      ease: 'all 0.5s ease-in-out',
+      linear: 'all 0.5s linear',
    },
 };
 

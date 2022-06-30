@@ -1,7 +1,12 @@
 import React from 'react';
+import { BestGear } from '../components';
 
 const HomePage = () => {
-   return <div>HomePage</div>;
+   return (
+      <>
+         <BestGear />
+      </>
+   );
 };
 
 export default HomePage;

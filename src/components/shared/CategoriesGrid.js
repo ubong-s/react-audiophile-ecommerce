@@ -67,7 +67,7 @@ const CategoryItem = styled.li`
       left: 0;
       width: 100%;
       height: 75%;
-      background-color: ${(props) => props.theme.light_gray};
+      background-color: ${(props) => props.theme.gray};
       border-radius: ${misc.rounded.sm};
    }
 
