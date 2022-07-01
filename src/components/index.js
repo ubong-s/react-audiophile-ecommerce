@@ -8,6 +8,7 @@ import CategoriesGrid from './shared/CategoriesGrid';
 import Footer from './shared/Footer';
 import Header from './shared/Header';
 import PageHeader from './shared/PageHeader';
+import ProductsListing from './shared/ProductsListing';
 
 export {
    Header,
@@ -20,4 +21,5 @@ export {
    ZX9Speaker,
    YX1Earphones,
    PageHeader,
+   ProductsListing,
 };

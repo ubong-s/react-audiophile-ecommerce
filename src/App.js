@@ -1,17 +1,26 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Theme } from './styles/theme';
 import { GlobalStyles } from './styles/globalStyle';
 import { Footer, Header } from './components';
+import { useDispatch } from 'react-redux';
+import { fetchProducts } from './redux_toolkit/features/productsSlice';
 
+// Pages
 const HomePage = lazy(() => import('./pages'));
-const Earphones = lazy(() => import('./pages/products/earphones'));
-const Headphones = lazy(() => import('./pages/products/headphones'));
-const Speakers = lazy(() => import('./pages/products/speakers'));
+const ProductCategories = lazy(() =>
+   import('./pages/products/productCategories')
+);
 const SingleProductPage = lazy(() => import('./pages/product'));
 const NotFound = lazy(() => import('./pages/404'));
 
 function App() {
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+      dispatch(fetchProducts());
+   }, []);
+
    return (
       <>
          <Suspense fallback='Loading...'>
@@ -24,19 +33,10 @@ function App() {
                         <Route exact path='/' element={<HomePage />} />
                         <Route
                            exact
-                           path='/products/earphones'
-                           element={<Earphones />}
+                           path='/products/:category'
+                           element={<ProductCategories />}
                         />
-                        <Route
-                           exact
-                           path='/products/speakers'
-                           element={<Speakers />}
-                        />
-                        <Route
-                           exact
-                           path='/products/headphones'
-                           element={<Headphones />}
-                        />
+
                         <Route
                            exact
                            path='/product/:slug'
