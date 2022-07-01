@@ -41,17 +41,6 @@ const YX1EarphonesInner = styled.div`
    display: grid;
    gap: 2rem;
 
-   .image {
-      img {
-         border-radius: ${misc.rounded.sm};
-         width: 100%;
-      }
-      .desktop,
-      .tablet {
-         display: none;
-      }
-   }
-
    .content {
       background-color: ${(props) => props.theme.gray};
       border-radius: ${misc.rounded.sm};
@@ -71,17 +60,6 @@ const YX1EarphonesInner = styled.div`
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
 
-      .image {
-         .tablet {
-            display: block;
-         }
-
-         .desktop,
-         .mobile {
-            display: none;
-         }
-      }
-
       .content {
          height: auto;
       }
@@ -89,17 +67,6 @@ const YX1EarphonesInner = styled.div`
 
    @media screen and (min-width: ${breakpoints.desktop}) {
       gap: 2rem;
-
-      .image {
-         .desktop {
-            display: block;
-         }
-
-         .tablet,
-         .mobile {
-            display: none;
-         }
-      }
 
       .content {
          padding-left: 20%;

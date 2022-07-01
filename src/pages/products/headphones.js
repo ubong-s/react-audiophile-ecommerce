@@ -1,7 +1,13 @@
-import React from 'react';
+import { CategoriesGrid, BestGear, PageHeader } from '../../components';
 
 const Headphones = () => {
-   return <div>Headphones</div>;
+   return (
+      <>
+         <PageHeader title='Headphones' />
+         <CategoriesGrid />
+         <BestGear />
+      </>
+   );
 };
 
 export default Headphones;

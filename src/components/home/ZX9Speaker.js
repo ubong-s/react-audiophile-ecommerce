@@ -59,10 +59,6 @@ const ZX9SpeakerInner = styled.div`
          width: 150px;
          margin: auto;
       }
-      .desktop,
-      .tablet {
-         display: none;
-      }
    }
 
    .content {
@@ -92,15 +88,6 @@ const ZX9SpeakerInner = styled.div`
             width: 200px;
             margin: auto;
          }
-
-         .tablet {
-            display: block;
-         }
-
-         .desktop,
-         .mobile {
-            display: none;
-         }
       }
 
       .content {
@@ -126,14 +113,6 @@ const ZX9SpeakerInner = styled.div`
          img {
             width: 100%;
             margin-bottom: -10%;
-         }
-         .desktop {
-            display: block;
-         }
-
-         .tablet,
-         .mobile {
-            display: none;
          }
       }
 

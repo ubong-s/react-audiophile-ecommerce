@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { misc } from '../../styles/theme';
 
-const Button = ({ text = 'Click here', outline }) => {
+const Button = ({ text = 'Click here', outline, colored }) => {
    return (
-      <ButtonWrap outline={outline} type='button'>
+      <ButtonWrap outline={outline} colored={colored} type='button'>
          {text}
       </ButtonWrap>
    );
@@ -29,5 +29,24 @@ const ButtonWrap = styled.button`
       css`
          background-color: transparent;
          color: ${(props) => props.theme.black};
+
+         &:hover {
+            background-color: ${(props) => props.theme.black};
+            color: ${(props) => props.theme.white};
+         }
+      `}
+
+   ${(props) =>
+      props.colored &&
+      css`
+         background-color: ${(props) => props.theme.accent};
+         color: ${(props) => props.theme.white};
+         border: ${(props) => props.theme.accent} 2px solid;
+
+         &:hover {
+            border: ${(props) => props.theme.white} 2px solid;
+            background-color: ${(props) => props.theme.white};
+            color: ${(props) => props.theme.black};
+         }
       `}
 `;

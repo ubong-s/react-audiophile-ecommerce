@@ -84,6 +84,39 @@ const bodyStyles = css`
          width: 80%;
       }
    }
+
+   .image {
+      img {
+         border-radius: ${misc.rounded.sm};
+         width: 100%;
+      }
+      .desktop,
+      .tablet {
+         display: none;
+      }
+
+      @media screen and (min-width: ${breakpoints.tablet}) {
+         .tablet {
+            display: block;
+         }
+
+         .desktop,
+         .mobile {
+            display: none;
+         }
+      }
+
+      @media screen and (min-width: ${breakpoints.desktop}) {
+         .desktop {
+            display: block;
+         }
+
+         .tablet,
+         .mobile {
+            display: none;
+         }
+      }
+   }
 `;
 
 export const GlobalStyles = createGlobalStyle`

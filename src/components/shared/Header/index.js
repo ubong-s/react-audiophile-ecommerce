@@ -24,8 +24,12 @@ export default Header;
 
 const HeaderWrap = styled.header`
    position: relative;
-   background-color: ${(props) => props.theme.black};
-   border-bottom: 1px solid;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+   z-index: 1000;
+
+   @media screen and (min-width: ${breakpoints.tablet}) {
+      border-bottom: none;
+   }
 `;
 
 const HeaderInner = styled.div`
@@ -38,6 +42,7 @@ const HeaderInner = styled.div`
       display: grid;
       grid-template-columns: auto 1fr auto;
       gap: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
    }
 
    @media screen and (min-width: ${breakpoints.desktop}) {

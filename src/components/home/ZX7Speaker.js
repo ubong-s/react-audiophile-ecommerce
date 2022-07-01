@@ -48,16 +48,6 @@ const ZX7SpeakerInner = styled.div`
    overflow: hidden;
    line-height: 0;
 
-   .image {
-      img {
-         width: 100%;
-      }
-      .desktop,
-      .tablet {
-         display: none;
-      }
-   }
-
    .content {
       position: absolute;
       top: 50%;
@@ -72,34 +62,12 @@ const ZX7SpeakerInner = styled.div`
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
-      .image {
-         .tablet {
-            display: block;
-         }
-
-         .desktop,
-         .mobile {
-            display: none;
-         }
-      }
-
       .content {
          left: 7.5%;
       }
    }
 
    @media screen and (min-width: ${breakpoints.desktop}) {
-      .image {
-         .desktop {
-            display: block;
-         }
-
-         .tablet,
-         .mobile {
-            display: none;
-         }
-      }
-
       .content {
          left: 10%;
       }
