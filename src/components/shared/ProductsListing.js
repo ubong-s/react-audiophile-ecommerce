@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/theme';
 import Button from './Button';
 
 const ProductsListing = ({ products = [] }) => {
@@ -17,7 +18,6 @@ const ProductsListing = ({ products = [] }) => {
                   new: newProduct,
                } = product;
 
-               console.log(product);
                return (
                   <Product key={id}>
                      <div className='image'>
@@ -42,7 +42,7 @@ const ProductsListing = ({ products = [] }) => {
                            <p className='subheader'>New product </p>
                         ) : null}
                         <h2>{name}</h2>
-                        <p>{description}</p>
+                        <p className='desc'>{description}</p>
                         <Link to={`/product/${slug}`}>
                            <Button colored='true' text='See product' />
                         </Link>
@@ -65,4 +65,75 @@ const Product = styled.article`
    gap: 2rem;
    text-align: center;
    padding: 4rem 0;
+
+   .content {
+      .subheader {
+         text-transform: uppercase;
+         letter-spacing: 4px;
+         color: ${(props) => props.theme.accent};
+      }
+
+      h2 {
+         font-size: 1.75rem;
+         line-height: 1.4;
+      }
+
+      .desc {
+         margin: 1.5rem 0 2rem;
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.tablet}) {
+      gap: 3rem;
+
+      .content {
+         width: 90%;
+         margin: auto;
+
+         .subheader {
+            letter-spacing: 8px;
+         }
+
+         h2 {
+            font-size: 2.5rem;
+            padding: 0 8rem;
+            line-height: 1.2;
+         }
+      }
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      grid-template-columns: 1.25fr 1fr;
+      gap: 8rem;
+      text-align: left;
+      padding: 5rem 0;
+
+      .content {
+         width: unset;
+         margin: auto;
+
+         .subheader {
+            letter-spacing: 8px;
+         }
+
+         h2 {
+            font-size: 2.5rem;
+            padding: 0;
+            padding-right: 8rem;
+         }
+      }
+
+      &:nth-child(even) {
+         grid-template-columns: 1fr 1.25fr;
+         grid-template-areas: 'content image';
+
+         .image {
+            grid-area: image;
+         }
+
+         .content {
+            grid-area: content;
+         }
+      }
+   }
 `;
