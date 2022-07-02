@@ -9,6 +9,7 @@ import Footer from './shared/Footer';
 import Header from './shared/Header';
 import PageHeader from './shared/PageHeader';
 import ProductsListing from './shared/ProductsListing';
+import BlackBar from './singleProductPage/BlackBar';
 
 export {
    Header,
@@ -22,4 +23,5 @@ export {
    YX1Earphones,
    PageHeader,
    ProductsListing,
+   BlackBar,
 };
