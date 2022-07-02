@@ -1,8 +1,8 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Theme } from './styles/theme';
 import { GlobalStyles } from './styles/globalStyle';
-import { Footer, Header } from './components';
+import { Footer, Header, Loading } from './components';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
 
@@ -16,39 +16,43 @@ const NotFound = lazy(() => import('./pages/404'));
 
 function App() {
    const dispatch = useDispatch();
+   const location = useLocation();
 
    useEffect(() => {
       dispatch(fetchProducts());
    }, []);
 
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [location.pathname]);
+
    return (
       <>
-         <Suspense fallback='Loading...'>
-            <Theme>
+         <Theme>
+            <Suspense fallback={<Loading />}>
                <GlobalStyles />
-               <Router>
-                  <Header />
-                  <main>
-                     <Routes>
-                        <Route exact path='/' element={<HomePage />} />
-                        <Route
-                           exact
-                           path='/products/:category'
-                           element={<ProductCategories />}
-                        />
 
-                        <Route
-                           exact
-                           path='/product/:slug'
-                           element={<SingleProductPage />}
-                        />
-                        <Route path='*' element={<NotFound />} />
-                     </Routes>
-                  </main>
-                  <Footer />
-               </Router>
-            </Theme>
-         </Suspense>
+               <Header />
+               <main>
+                  <Routes>
+                     <Route exact path='/' element={<HomePage />} />
+                     <Route
+                        exact
+                        path='/products/:category'
+                        element={<ProductCategories />}
+                     />
+
+                     <Route
+                        exact
+                        path='/product/:slug'
+                        element={<SingleProductPage />}
+                     />
+                     <Route path='*' element={<NotFound />} />
+                  </Routes>
+               </main>
+               <Footer />
+            </Suspense>
+         </Theme>
       </>
    );
 }

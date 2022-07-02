@@ -34,12 +34,28 @@ const bodyStyles = css`
       line-height: 1.1;
       text-transform: uppercase;
       color: ${(props) => props.theme.black};
+      margin-bottom: 1.5rem;
+   }
+
+   h2 {
+      font-size: 1.75rem;
+      line-height: 1.4;
+
+      @media screen and (min-width: ${breakpoints.tablet}) {
+         font-size: 2.25rem;
+         line-height: 1.2;
+      }
+
+      @media screen and (min-width: ${breakpoints.desktop}) {
+         font-size: 2.5rem;
+      }
    }
 
    p {
       font-size: 1rem;
       margin-bottom: 1rem;
       color: ${(props) => props.theme.text};
+      font-weight: ${typography.weight.normal};
    }
 
    img {

@@ -73,11 +73,6 @@ const Product = styled.article`
          color: ${(props) => props.theme.accent};
       }
 
-      h2 {
-         font-size: 1.75rem;
-         line-height: 1.4;
-      }
-
       .desc {
          margin: 1.5rem 0 2rem;
       }
@@ -95,9 +90,7 @@ const Product = styled.article`
          }
 
          h2 {
-            font-size: 2.5rem;
             padding: 0 8rem;
-            line-height: 1.2;
          }
       }
    }
@@ -117,7 +110,6 @@ const Product = styled.article`
          }
 
          h2 {
-            font-size: 2.5rem;
             padding: 0;
             padding-right: 8rem;
          }

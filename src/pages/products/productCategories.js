@@ -18,8 +18,6 @@ const ProductCategories = () => {
          return b.true ? 1 : -1;
       });
 
-   console.log(categoryProducts);
-
    return (
       <>
          <PageHeader title={category} />

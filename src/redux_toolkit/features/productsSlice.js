@@ -45,6 +45,7 @@ export const productsSlice = createSlice({
             state.allProducts = action.payload;
          })
          .addCase(fetchProducts.rejected, (state) => {
+            state.loading = false;
             state.error = `Error fetching products`;
          })
          .addCase(fetchSingleProduct.pending, (state) => {
@@ -52,10 +53,14 @@ export const productsSlice = createSlice({
          })
          .addCase(fetchSingleProduct.fulfilled, (state, action) => {
             state.single_product_loading = false;
-            console.log(action.payload);
-            state.single_product = action.payload;
+            if (!action.payload) {
+               state.single_product_error = `Error fetching product`;
+            } else {
+               state.single_product = action.payload;
+            }
          })
          .addCase(fetchSingleProduct.rejected, (state) => {
+            state.single_product_loading = false;
             state.single_product_error = `Error fetching product`;
          });
    },
