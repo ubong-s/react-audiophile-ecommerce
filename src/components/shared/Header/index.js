@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../../styles/theme';
+import { breakpoints, misc } from '../../../styles/theme';
 import Logo from '../Logo';
 import CartBtn from './CartBtn';
 import DesktopNav from './DesktopNav';
 import MobileMenuBtn from './MobileMenuBtn';
 import MobileNav from './MobileNav';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+   const { menuOpen } = useSelector((state) => state.global);
+
    return (
-      <HeaderWrap>
+      <HeaderWrap className={menuOpen ? 'menu-active' : null}>
          <HeaderInner className='container'>
             <MobileMenuBtn />
             <Logo />
@@ -26,9 +29,20 @@ const HeaderWrap = styled.header`
    position: relative;
    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
    z-index: 1000;
+   transition: ${misc.transition.ease};
+
+   &.menu-active {
+      background: ${(props) => props.theme.black};
+   }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
       border-bottom: none;
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      &.menu-active {
+         background: transparent;
+      }
    }
 `;
 

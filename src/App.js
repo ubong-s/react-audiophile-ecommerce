@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { Theme } from './styles/theme';
 import { GlobalStyles } from './styles/globalStyle';
 import { Footer, Header, Loading } from './components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
 
 // Pages
@@ -17,6 +17,7 @@ const NotFound = lazy(() => import('./pages/404'));
 function App() {
    const dispatch = useDispatch();
    const location = useLocation();
+   const { menuOpen } = useSelector((state) => state.global);
 
    useEffect(() => {
       dispatch(fetchProducts());
@@ -33,7 +34,7 @@ function App() {
                <GlobalStyles />
 
                <Header />
-               <main>
+               <main className={menuOpen ? 'menu-active' : null}>
                   <Routes>
                      <Route exact path='/' element={<HomePage />} />
                      <Route

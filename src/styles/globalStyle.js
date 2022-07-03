@@ -21,6 +21,50 @@ const bodyStyles = css`
 
    main {
       min-height: 85vh;
+      transition: ${misc.transition.ease};
+      position: relative;
+
+      &.menu-active {
+         opacity: 0;
+         height: 0;
+         overflow: hidden;
+      }
+
+      @media screen and (min-width: ${breakpoints.tablet}) {
+         &.menu-active {
+            opacity: unset;
+            overflow: hidden;
+            height: calc(85vh + 1px);
+
+            &::after {
+               position: absolute;
+               content: '';
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               background-color: rgba(0, 0, 0, 0.5);
+            }
+         }
+      }
+
+      @media screen and (min-width: ${breakpoints.desktop}) {
+         &.menu-active {
+            overflow: unset;
+            height: unset;
+
+            &::after {
+               position: unset;
+               content: unset;
+               top: unset;
+               left: unset;
+               width: unset;
+               height: unset;
+               background-color: transparent;
+               display: none;
+            }
+         }
+      }
    }
 
    h1,
@@ -70,17 +114,6 @@ const bodyStyles = css`
       text-decoration: none;
       letter-spacing: 0.5px;
    }
-
-   /* input,
-   textarea {
-      width: 100%;
-      border-radius: ${misc.rounded.sm};
-      padding: 1rem;
-      outline: none;
-      border: none;
-      background: ${(props) => props.theme.grey_light};
-      color: ${(props) => props.theme.grey_dark}; 
-   } */
 
    button {
       cursor: pointer;

@@ -11,7 +11,6 @@ const MobileNav = () => {
          <MobileNavWrap className={menuOpen ? 'active' : null}>
             <CategoriesGrid click='true' />
          </MobileNavWrap>
-         {/* <Overlay></Overlay> */}
       </>
    );
 };
@@ -27,7 +26,7 @@ const MobileNavWrap = styled.nav`
    background-color: ${(props) => props.theme.white};
    border-bottom-left-radius: ${misc.rounded.sm};
    border-bottom-right-radius: ${misc.rounded.sm};
-   transform: translateX(-100vw) scale(0);
+   transform: translateX(-100vw);
    transform-origin: left top;
    opacity: 0;
    transition: ${misc.transition.linear};
@@ -35,11 +34,10 @@ const MobileNavWrap = styled.nav`
 
    &.active {
       opacity: 1;
-      transform: translateX(0) scale(1);
+      transform: translateX(0);
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
-      transform-origin: top;
       transform: translateX(0);
       transform: translateY(-100vh);
 

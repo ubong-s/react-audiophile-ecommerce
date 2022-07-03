@@ -2,12 +2,15 @@ import styled from 'styled-components';
 import Logo from './Logo';
 import { categories } from '../../constants/menuNav';
 import { Link } from 'react-router-dom';
-import { breakpoints } from '../../styles/theme';
+import { breakpoints, misc } from '../../styles/theme';
 import { socials } from '../../constants/socials';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+   const { menuOpen } = useSelector((state) => state.global);
+
    return (
-      <FooterWrap>
+      <FooterWrap className={menuOpen ? 'menu-active' : null}>
          <FooterInner className='container'>
             <div className='orange-bar'></div>
             <FooterBox>
@@ -63,15 +66,29 @@ export default Footer;
 
 const FooterWrap = styled.footer`
    background-color: ${(props) => props.theme.black};
-
    text-align: center;
+   transition: ${misc.transition.ease};
 
    p {
       color: ${(props) => props.theme.light_gray};
    }
 
+   &.menu-active {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+   }
+
    @media screen and (min-width: ${breakpoints.tablet}) {
       text-align: left;
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      &.menu-active {
+         height: unset;
+         opacity: unset;
+         overflow: unset;
+      }
    }
 `;
 const FooterInner = styled.div`
