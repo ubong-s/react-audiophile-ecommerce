@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { breakpoints, typography } from '../../styles/theme';
+import { breakpoints } from '../../styles/theme';
 import Button from '../shared/Button';
 
 const YouMayAlsoLike = ({ relatedProducts }) => {
@@ -25,7 +25,7 @@ const YouMayAlsoLike = ({ relatedProducts }) => {
                         </div>
                         <h3>{name}</h3>
                         <Link to={`/product/${slug}`}>
-                           <Button colored='true' />
+                           <Button colored='true' text='See Product' />
                         </Link>
                      </li>
                   );
@@ -91,7 +91,7 @@ const YouMayAlsoLikeWrap = styled.section`
       ul {
          li {
             h3 {
-               font-size: 2rem;
+               font-size: 1.75rem;
                margin: 2.5rem 0;
             }
          }

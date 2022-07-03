@@ -66,28 +66,12 @@ const Product = styled.article`
    text-align: center;
    padding: 4rem 0;
 
-   .content {
-      .subheader {
-         text-transform: uppercase;
-         letter-spacing: 4px;
-         color: ${(props) => props.theme.accent};
-      }
-
-      .desc {
-         margin: 1.5rem 0 2rem;
-      }
-   }
-
    @media screen and (min-width: ${breakpoints.tablet}) {
       gap: 3rem;
 
       .content {
          width: 90%;
          margin: auto;
-
-         .subheader {
-            letter-spacing: 8px;
-         }
 
          h2 {
             padding: 0 8rem;
@@ -104,10 +88,6 @@ const Product = styled.article`
       .content {
          width: unset;
          margin: auto;
-
-         .subheader {
-            letter-spacing: 8px;
-         }
 
          h2 {
             padding: 0;

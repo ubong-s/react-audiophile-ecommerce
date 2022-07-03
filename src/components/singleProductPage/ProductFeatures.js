@@ -26,7 +26,7 @@ const ProductFeatures = ({ features, box_items }) => {
 export default ProductFeatures;
 
 const ProductFeaturesWrap = styled.section`
-   padding: 4rem 0;
+   padding: 6rem 0;
    display: grid;
    gap: 4rem;
 
@@ -47,11 +47,10 @@ const ProductFeaturesWrap = styled.section`
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
-      padding: 6rem 0;
+      padding: 8rem 0;
    }
 
    @media screen and (min-width: ${breakpoints.desktop}) {
-      padding: 7rem 0;
       gap: 6rem;
       grid-template-columns: 2fr 1fr;
    }

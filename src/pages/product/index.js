@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { BestGear, BlackBar, CategoriesGrid, Loading } from '../../components';
+import { BestGear, BlackBar, CategoriesGrid } from '../../components';
 import { fetchSingleProduct } from '../../redux_toolkit/features/productsSlice';
 import {
    ProductInfo,
@@ -15,11 +15,9 @@ const SingleProductPage = () => {
    const dispatch = useDispatch();
 
    const navigate = useNavigate();
-   const {
-      single_product_loading: loading,
-      single_product_error: error,
-      single_product: product,
-   } = useSelector((state) => state.products);
+   const { single_product_error: error, single_product: product } = useSelector(
+      (state) => state.products
+   );
 
    useEffect(() => {
       dispatch(fetchSingleProduct(slug));

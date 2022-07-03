@@ -71,16 +71,16 @@ const bodyStyles = css`
       letter-spacing: 0.5px;
    }
 
-   input,
+   /* input,
    textarea {
       width: 100%;
       border-radius: ${misc.rounded.sm};
       padding: 1rem;
       outline: none;
       border: none;
-      /* background: ${(props) => props.theme.grey_light};
-      color: ${(props) => props.theme.grey_dark}; */
-   }
+      background: ${(props) => props.theme.grey_light};
+      color: ${(props) => props.theme.grey_dark}; 
+   } */
 
    button {
       cursor: pointer;
@@ -130,6 +130,26 @@ const bodyStyles = css`
          .tablet,
          .mobile {
             display: none;
+         }
+      }
+   }
+
+   .content {
+      .subheader {
+         text-transform: uppercase;
+         letter-spacing: 4px;
+         color: ${(props) => props.theme.accent};
+      }
+
+      .desc {
+         margin: 1.5rem 0 2rem;
+      }
+
+      @media screen and (min-width: ${breakpoints.tablet}) {
+         .content {
+            .subheader {
+               letter-spacing: 8px;
+            }
          }
       }
    }
