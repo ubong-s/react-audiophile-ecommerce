@@ -1,9 +1,25 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints, misc, typography } from '../../styles/theme';
 
 const ProductInfo = ({ name, image, newProduct, description, price }) => {
    const navigate = useNavigate();
+   const [quantity, setQuantity] = useState(1);
+
+   let minQty = 1;
+   let maxQty = 5;
+
+   const changeQty = (e) => {
+      let status = e.target.dataset.qty;
+
+      if (status === 'increase' && quantity < maxQty) {
+         setQuantity((prev) => prev + 1);
+      }
+      if (status === 'decrease' && quantity > minQty) {
+         setQuantity((prev) => prev - 1);
+      }
+   };
 
    return (
       <ProductInfoWrap className='container'>
@@ -30,10 +46,30 @@ const ProductInfo = ({ name, image, newProduct, description, price }) => {
                <p className='price'>${new Intl.NumberFormat().format(price)}</p>
 
                <AddToCart>
-                  <div className='quantity'>
-                     <button className='qty-btn'>-</button>
-                     <span className='qty'>1</span>
-                     <button className='qty-btn'>+</button>
+                  <div
+                     className={
+                        quantity === maxQty
+                           ? 'quantity limit-active'
+                           : 'quantity'
+                     }
+                  >
+                     <button
+                        data-qty='decrease'
+                        className='qty-btn'
+                        onClick={changeQty}
+                        disabled={quantity === minQty}
+                     >
+                        -
+                     </button>
+                     <span className='qty'>{quantity}</span>
+                     <button
+                        data-qty='increase'
+                        className='qty-btn'
+                        onClick={changeQty}
+                        disabled={quantity === maxQty}
+                     >
+                        +
+                     </button>
                   </div>
                   <button type='submit' className='add-btn'>
                      Add to Cart
@@ -116,10 +152,19 @@ const AddToCart = styled.div`
       align-items: center;
       background-color: ${(props) => props.theme.gray};
       font-weight: ${typography.weight.bold};
+      transition: ${misc.transition.ease};
+      border: transparent 1px solid;
+      height: 3.5rem;
 
       .qty-btn {
-         padding: 1rem 1.25rem;
+         padding: 0 1.25rem;
          color: ${(props) => props.theme.text};
+         font-size: 1.25rem;
+
+         &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+         }
 
          &:hover {
             color: ${(props) => props.theme.accent};
@@ -128,10 +173,15 @@ const AddToCart = styled.div`
       }
 
       .qty {
-         padding: 1rem 1.25rem;
-         line-height: 0;
+         display: flex;
+         align-items: center;
+         padding: 0 1.25rem;
          height: 100%;
          color: ${(props) => props.theme.black};
+      }
+
+      &.limit-active {
+         border: ${(props) => props.theme.accent} 1px solid;
       }
    }
 
@@ -139,9 +189,11 @@ const AddToCart = styled.div`
       background-color: ${(props) => props.theme.accent};
       color: ${(props) => props.theme.white};
       border: ${(props) => props.theme.accent} 2px solid;
-      padding: 1rem 2.5rem;
+      padding: 0 2.5rem;
       transition: ${misc.transition.ease};
       text-transform: uppercase;
+      margin: 1px;
+      height: 3.5rem;
 
       &:hover {
          background-color: transparent;

@@ -9,6 +9,7 @@ const bodyStyles = css`
    max-width: 1600px;
    font-weight: 400;
    margin: auto;
+   overflow-y: scroll;
 
    *,
    ::after,
@@ -27,6 +28,11 @@ const bodyStyles = css`
       &.menu-active {
          opacity: 0;
          height: 0;
+         overflow: hidden;
+      }
+
+      &.cart-active {
+         height: calc(85vh + 2px);
          overflow: hidden;
       }
 

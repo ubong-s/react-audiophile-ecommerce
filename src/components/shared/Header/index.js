@@ -8,10 +8,12 @@ import MobileNav from './MobileNav';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
-   const { menuOpen } = useSelector((state) => state.global);
+   const { menuOpen, cartOpen } = useSelector((state) => state.global);
 
    return (
-      <HeaderWrap className={menuOpen ? 'menu-active' : null}>
+      <HeaderWrap
+         className={menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null}
+      >
          <HeaderInner className='container'>
             <MobileMenuBtn />
             <Logo />
@@ -33,6 +35,10 @@ const HeaderWrap = styled.header`
 
    &.menu-active {
       background: ${(props) => props.theme.black};
+   }
+
+   &.cart-active {
+      background: rgba(0, 0, 0, 0.5);
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {

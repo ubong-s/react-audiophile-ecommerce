@@ -5,6 +5,8 @@ import { GlobalStyles } from './styles/globalStyle';
 import { Footer, Header, Loading } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
+import Cart from './components/shared/Cart';
+// import SingleProductPage from './pages/product';
 
 // Pages
 const HomePage = lazy(() => import('./pages'));
@@ -17,10 +19,11 @@ const NotFound = lazy(() => import('./pages/404'));
 function App() {
    const dispatch = useDispatch();
    const location = useLocation();
-   const { menuOpen } = useSelector((state) => state.global);
+   const { menuOpen, cartOpen } = useSelector((state) => state.global);
 
    useEffect(() => {
       dispatch(fetchProducts());
+      // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
@@ -32,9 +35,13 @@ function App() {
          <Theme>
             <Suspense fallback={<Loading />}>
                <GlobalStyles />
-
+               <Cart />
                <Header />
-               <main className={menuOpen ? 'menu-active' : null}>
+               <main
+                  className={
+                     menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null
+                  }
+               >
                   <Routes>
                      <Route exact path='/' element={<HomePage />} />
                      <Route

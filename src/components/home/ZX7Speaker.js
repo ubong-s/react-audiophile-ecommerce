@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints, misc } from '../../styles/theme';
 import Button from '../shared/Button';
@@ -25,7 +26,9 @@ const ZX7Speaker = () => {
             </div>
             <div className='content'>
                <h2>ZX7 Speaker</h2>
-               <Button outline='true' text='See product' />
+               <Link to='/product/zx7-speaker'>
+                  <Button outline='true' text='See product' />
+               </Link>
             </div>
          </ZX7SpeakerInner>
       </ZX7SpeakerWrap>

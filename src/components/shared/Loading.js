@@ -17,9 +17,11 @@ export default Loading;
 
 const LoadingWrap = styled.div`
    display: grid;
-   height: 100vh;
+   height: 90vh;
+   width: 100%;
    align-items: center;
    justify-items: center;
+   text-align: center;
 
    .lds-ripple {
       display: inline-block;

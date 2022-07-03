@@ -4,11 +4,15 @@ import { breakpoints, misc } from '../../../styles/theme';
 import CategoriesGrid from '../CategoriesGrid';
 
 const MobileNav = () => {
-   const { menuOpen } = useSelector((state) => state.global);
+   const { menuOpen, cartOpen } = useSelector((state) => state.global);
 
    return (
       <>
-         <MobileNavWrap className={menuOpen ? 'active' : null}>
+         <MobileNavWrap
+            className={
+               menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null
+            }
+         >
             <CategoriesGrid click='true' />
          </MobileNavWrap>
       </>
@@ -32,30 +36,25 @@ const MobileNavWrap = styled.nav`
    transition: ${misc.transition.linear};
    z-index: 1000;
 
-   &.active {
+   &.menu-active {
       opacity: 1;
       transform: translateX(0);
+   }
+
+   &.cart-active {
+      opacity: 0;
+      display: none;
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
       transform: translateX(0);
       transform: translateY(-100vh);
 
-      &.active {
+      &.menu-active {
          transform: translateY(0);
       }
    }
    @media screen and (min-width: ${breakpoints.desktop}) {
       display: none;
    }
-`;
-
-const Overlay = styled.div`
-   position: absolute;
-   left: 0;
-   top: 80px;
-   width: 100%;
-   height: 100%;
-   background-color: red;
-   z-index: 2000;
 `;

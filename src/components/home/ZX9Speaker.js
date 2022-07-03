@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints, misc } from '../../styles/theme';
 import Button from '../shared/Button';
@@ -31,7 +32,9 @@ const ZX9Speaker = () => {
                   Upgrade to premium speakers that are phenomenally built to
                   deliver truly remarkable sound.
                </p>
-               <Button text='see product' />
+               <Link to='/product/zx9-speaker'>
+                  <Button text='see product' />
+               </Link>
             </div>
          </ZX9SpeakerInner>
       </ZX9SpeakerWrap>

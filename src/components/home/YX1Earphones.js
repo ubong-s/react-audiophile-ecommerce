@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints, misc } from '../../styles/theme';
 import Button from '../shared/Button';
@@ -9,24 +10,26 @@ const YX1Earphones = () => {
             <div className='image'>
                <img
                   src='/assets/home/mobile/image-earphones-yx1.jpg'
-                  alt='ZX7 Speaker'
+                  alt='YX1 Earphones'
                   className='mobile'
                />
                <img
                   src='/assets/home/tablet/image-earphones-yx1.jpg'
-                  alt='ZX7 Speaker'
+                  alt='YX1 Earphones'
                   className='tablet'
                />
                <img
                   src='/assets/home/desktop/image-earphones-yx1.jpg'
-                  alt='ZX7 Speaker'
+                  alt='YX1 Earphones'
                   className='desktop'
                />
             </div>
             <div className='content'>
                <div>
                   <h2>YX1 Earphones</h2>
-                  <Button outline='true' text='See product' />
+                  <Link to='/product/yx1-earphones'>
+                     <Button outline='true' text='See product' />
+                  </Link>
                </div>
             </div>
          </YX1EarphonesInner>

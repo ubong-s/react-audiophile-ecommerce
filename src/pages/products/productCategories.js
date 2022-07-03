@@ -5,6 +5,7 @@ import {
    BestGear,
    PageHeader,
    ProductsListing,
+   Seo,
 } from '../../components';
 
 const ProductCategories = () => {
@@ -20,6 +21,7 @@ const ProductCategories = () => {
 
    return (
       <>
+         <Seo title={`${category[0].toUpperCase()}${category.substring(1)}`} />
          <PageHeader title={category} />
          <ProductsListing products={categoryProducts} />
          <CategoriesGrid />
