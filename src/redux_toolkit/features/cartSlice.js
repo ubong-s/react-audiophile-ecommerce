@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
          } else {
             const newItem = {
                id: id + slug,
-               name: product.name,
+               name: product.nickname,
                quantity,
                image: product.image.mobile,
                price: product.price,
@@ -54,7 +54,22 @@ export const cartSlice = createSlice({
 
          state.cart = tempCart;
       },
-      updateCartTotals: (state) => {},
+      updateCartTotals: (state) => {
+         const { total_items, total_amount } = state.cart.reduce(
+            (total, cartItem) => {
+               const { quantity, price } = cartItem;
+
+               total.total_items += quantity;
+               total.total_amount += quantity * price;
+
+               return total;
+            },
+            { total_items: 0, total_amount: 0 }
+         );
+
+         state.total_amount = total_amount;
+         state.total_items = total_items;
+      },
       clearCart: (state) => {
          state.cart = [];
       },

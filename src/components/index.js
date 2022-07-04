@@ -4,6 +4,7 @@ import ZX7Speaker from './home/ZX7Speaker';
 import ZX9Speaker from './home/ZX9Speaker';
 import BestGear from './shared/BestGear';
 import Button from './shared/Button';
+import Cart from './shared/Cart';
 import CategoriesGrid from './shared/CategoriesGrid';
 import Footer from './shared/Footer';
 import Header from './shared/Header';
@@ -20,6 +21,7 @@ import YouMayAlsoLike from './singleProductPage/YouMayAlsoLike';
 
 export {
    Seo,
+   Cart,
    Loading,
    Header,
    Footer,

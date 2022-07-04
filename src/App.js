@@ -2,10 +2,10 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Theme } from './styles/theme';
 import { GlobalStyles } from './styles/globalStyle';
-import { Footer, Header, Loading } from './components';
+import { Footer, Header, Loading, Cart } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
-import Cart from './components/shared/Cart';
+import { updateCartTotals } from './redux_toolkit/features/cartSlice';
 // import SingleProductPage from './pages/product';
 
 // Pages
@@ -19,12 +19,21 @@ const NotFound = lazy(() => import('./pages/404'));
 function App() {
    const dispatch = useDispatch();
    const location = useLocation();
-   const { menuOpen, cartOpen } = useSelector((state) => state.global);
+   const {
+      global: { menuOpen, cartOpen },
+      cart: { cart },
+   } = useSelector((state) => state);
 
    useEffect(() => {
       dispatch(fetchProducts());
       // eslint-disable-next-line
    }, []);
+
+   useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      dispatch(updateCartTotals());
+      // eslint-disable-next-line
+   }, [cart]);
 
    useEffect(() => {
       window.scrollTo(0, 0);
