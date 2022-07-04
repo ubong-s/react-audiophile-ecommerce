@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { addToCart } from '../../redux_toolkit/features/cartSlice';
 import { breakpoints, misc, typography } from '../../styles/theme';
 
-const ProductInfo = ({ name, image, newProduct, description, price }) => {
+const ProductInfo = ({ product }) => {
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+   const { id, slug, name, image, newProduct, description, price } = product;
    const [quantity, setQuantity] = useState(1);
 
    let minQty = 1;
-   let maxQty = 5;
+   let maxQty = 10;
 
    const changeQty = (e) => {
       let status = e.target.dataset.qty;
@@ -71,7 +75,13 @@ const ProductInfo = ({ name, image, newProduct, description, price }) => {
                         +
                      </button>
                   </div>
-                  <button type='submit' className='add-btn'>
+                  <button
+                     className='add-btn'
+                     onClick={() => {
+                        dispatch(addToCart({ id, slug, product, quantity }));
+                        setQuantity(1);
+                     }}
+                  >
                      Add to Cart
                   </button>
                </AddToCart>
@@ -157,9 +167,9 @@ const AddToCart = styled.div`
       height: 3.5rem;
 
       .qty-btn {
-         padding: 0 1.25rem;
+         padding: 0 1rem;
          color: ${(props) => props.theme.text};
-         font-size: 1.25rem;
+         font-size: 1rem;
 
          &:disabled {
             opacity: 0.5;
@@ -175,7 +185,7 @@ const AddToCart = styled.div`
       .qty {
          display: flex;
          align-items: center;
-         padding: 0 1.25rem;
+         padding: 0 0.5rem;
          height: 100%;
          color: ${(props) => props.theme.black};
       }
@@ -189,7 +199,7 @@ const AddToCart = styled.div`
       background-color: ${(props) => props.theme.accent};
       color: ${(props) => props.theme.white};
       border: ${(props) => props.theme.accent} 2px solid;
-      padding: 0 2.5rem;
+      padding: 0 2rem;
       transition: ${misc.transition.ease};
       text-transform: uppercase;
       margin: 1px;

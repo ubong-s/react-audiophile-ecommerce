@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { toggleCart } from '../../../redux_toolkit/features/globalSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CartBtn = () => {
    const dispatch = useDispatch();
+   const { total_items } = useSelector((state) => state.cart);
 
    return (
       <CartBtnWrap
@@ -19,6 +20,7 @@ const CartBtn = () => {
                fillRule='nonzero'
             />
          </svg>
+         <span className='cart-value'>{total_items}</span>
       </CartBtnWrap>
    );
 };
@@ -26,5 +28,20 @@ const CartBtn = () => {
 export default CartBtn;
 
 const CartBtnWrap = styled.button`
+   position: relative;
+   z-index: 1000;
    line-height: 0;
+
+   .cart-value {
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: ${(props) => props.theme.accent};
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+   }
 `;

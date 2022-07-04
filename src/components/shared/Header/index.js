@@ -30,15 +30,16 @@ export default Header;
 const HeaderWrap = styled.header`
    position: relative;
    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-   z-index: 1000;
+   z-index: 999;
    transition: ${misc.transition.ease};
+   background: transparent;
 
    &.menu-active {
       background: ${(props) => props.theme.black};
    }
 
    &.cart-active {
-      background: rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.black};
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {

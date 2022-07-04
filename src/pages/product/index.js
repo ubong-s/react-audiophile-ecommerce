@@ -41,13 +41,7 @@ const SingleProductPage = () => {
          <BlackBar />
          {product && (
             <>
-               <ProductInfo
-                  name={product.name}
-                  image={product.image}
-                  newProduct={product.new}
-                  description={product.description}
-                  price={product.price}
-               />
+               <ProductInfo product={product} />
                <ProductFeatures
                   features={product.features}
                   box_items={product.includes}
