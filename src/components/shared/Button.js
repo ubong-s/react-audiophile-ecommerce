@@ -44,8 +44,9 @@ const ButtonWrap = styled.button`
          border: ${(props) => props.theme.accent} 2px solid;
 
          &:hover {
-            background-color: transparent;
-            color: ${(props) => props.theme.accent};
+            border: ${(props) => props.theme.accent_light} 2px solid;
+            background-color: ${(props) => props.theme.accent_light};
+            color: ${(props) => props.theme.white};
          }
       `}
 `;

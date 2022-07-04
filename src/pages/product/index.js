@@ -9,6 +9,7 @@ import {
    ProductGallery,
    YouMayAlsoLike,
 } from '../../components';
+import styled from 'styled-components';
 
 const SingleProductPage = () => {
    const { slug } = useParams();
@@ -16,7 +17,7 @@ const SingleProductPage = () => {
 
    const navigate = useNavigate();
    const {
-      // single_product_loading: loading,
+      single_product_loading: loading,
       single_product_error: error,
       single_product: product,
    } = useSelector((state) => state.products);
@@ -39,8 +40,10 @@ const SingleProductPage = () => {
       <>
          <Seo title={product?.name} />
          <BlackBar />
-         {product && (
-            <>
+         {loading ? (
+            <Loading />
+         ) : product ? (
+            <ProductDataRoot>
                <ProductInfo product={product} />
                <ProductFeatures
                   features={product.features}
@@ -49,8 +52,8 @@ const SingleProductPage = () => {
 
                <ProductGallery name={product.name} gallery={product.gallery} />
                <YouMayAlsoLike relatedProducts={product.others} />
-            </>
-         )}
+            </ProductDataRoot>
+         ) : null}
          <CategoriesGrid />
          <BestGear />
       </>
@@ -58,3 +61,12 @@ const SingleProductPage = () => {
 };
 
 export default SingleProductPage;
+
+const Loading = styled.div`
+   width: 100%;
+   height: 85vh;
+`;
+
+const ProductDataRoot = styled.div`
+   width: 100%;
+`;

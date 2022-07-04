@@ -12,7 +12,7 @@ import Loading from './shared/Loading';
 import PageHeader from './shared/PageHeader';
 import ProductsListing from './shared/ProductsListing';
 import Seo from './shared/Seo';
-import BlackBar from './singleProductPage/BlackBar';
+import BlackBar from './shared/BlackBar';
 import ProductFeatures from './singleProductPage/ProductFeatures';
 import ProductGallery from './singleProductPage/ProductGallery';
 import ProductInfo from './singleProductPage/ProductInfo';

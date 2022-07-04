@@ -99,6 +99,10 @@ const ProductInfoWrap = styled.section`
    .go-back-btn {
       text-transform: capitalize;
       color: ${(props) => props.theme.text};
+
+      &:hover {
+         color: ${(props) => props.theme.accent};
+      }
    }
 
    .info-btm {

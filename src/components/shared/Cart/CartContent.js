@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { clearCart } from '../../../redux_toolkit/features/cartSlice';
+import {
+   clearCart,
+   removeItem,
+   toggleCartItemAmount,
+} from '../../../redux_toolkit/features/cartSlice';
+import { closeCart } from '../../../redux_toolkit/features/globalSlice';
 import { misc, typography } from '../../../styles/theme';
 import Button from '../Button';
 
@@ -12,6 +17,19 @@ const CartContent = () => {
       cart: { cart, total_items, total_amount },
    } = useSelector((state) => state);
 
+   const remove = (id) => {
+      dispatch(removeItem(id));
+   };
+
+   const toggleAmount = (id, value) => {
+      dispatch(
+         toggleCartItemAmount({
+            id,
+            value,
+         })
+      );
+   };
+
    return (
       <CartContentWrap>
          <div className='cart-header'>
@@ -21,7 +39,7 @@ const CartContent = () => {
 
          <ul>
             {cart.map((cartItem) => {
-               const { id, name, image, price, quantity } = cartItem;
+               const { id, name, image, price, quantity, max } = cartItem;
 
                return (
                   <CartItem key={id}>
@@ -31,12 +49,34 @@ const CartContent = () => {
                         <p>${new Intl.NumberFormat().format(price)}</p>
                      </div>
 
-                     <div className='quantity'>
-                        <button data-qty='decrease' className='qty-btn'>
+                     <div
+                        className={
+                           quantity === max
+                              ? 'quantity limit-active'
+                              : 'quantity'
+                        }
+                     >
+                        <button
+                           data-qty='decrease'
+                           className='qty-btn'
+                           onClick={(e) => {
+                              if (quantity === 1) {
+                                 return remove(id);
+                              } else {
+                                 toggleAmount(id, e.target.dataset.qty);
+                              }
+                           }}
+                        >
                            -
                         </button>
                         <span className='qty'>{quantity}</span>
-                        <button data-qty='increase' className='qty-btn'>
+                        <button
+                           data-qty='increase'
+                           className='qty-btn'
+                           onClick={(e) =>
+                              toggleAmount(id, e.target.dataset.qty)
+                           }
+                        >
                            +
                         </button>
                      </div>
@@ -52,7 +92,11 @@ const CartContent = () => {
             </p>
          </div>
 
-         <Link to='/checkout' className='checkout-btn'>
+         <Link
+            to='/checkout'
+            className='checkout-btn'
+            onClick={() => dispatch(closeCart())}
+         >
             <Button colored='true' text='Checkout' />
          </Link>
       </CartContentWrap>
@@ -76,10 +120,16 @@ const CartContentWrap = styled.div`
          text-transform: capitalize;
          text-decoration: underline;
          color: ${(props) => props.theme.text};
+
+         &:hover {
+            color: ${(props) => props.theme.accent};
+         }
       }
    }
 
    .total {
+      margin: 1.25rem 0;
+
       p {
          display: flex;
          align-items: center;
@@ -129,7 +179,7 @@ const CartItem = styled.li`
       font-weight: ${typography.weight.bold};
       transition: ${misc.transition.ease};
       border: transparent 1px solid;
-      height: 2.5rem;
+      height: 2.25rem;
 
       .qty-btn {
          padding: 0 1rem;
@@ -153,6 +203,10 @@ const CartItem = styled.li`
          padding: 0 0.5rem;
          height: 100%;
          color: ${(props) => props.theme.black};
+      }
+
+      &.limit-active {
+         border: ${(props) => props.theme.accent} 1px solid;
       }
    }
 `;

@@ -8,7 +8,7 @@ const CartEmpty = () => {
    return (
       <CartEmptyWrap>
          <h3>Your Cart is empty</h3>
-         <img src='/assets/cart/icon_empty_cart.svg' alt='' />
+         <img src='/assets/cart/icon_empty_cart.svg' alt='Empty Cart' />
          <div onClick={() => dispatch(closeCart())}>
             <Button colored='true' text='Go Shopping' />
          </div>

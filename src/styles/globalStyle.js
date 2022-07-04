@@ -129,6 +129,7 @@ const bodyStyles = css`
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 2px;
+      transition: ${misc.transition.ease};
    }
 
    .container {

@@ -14,6 +14,7 @@ const ProductCategories = lazy(() =>
    import('./pages/products/productCategories')
 );
 const SingleProductPage = lazy(() => import('./pages/product'));
+const CheckoutPage = lazy(() => import('./pages/checkout'));
 const NotFound = lazy(() => import('./pages/404'));
 
 function App() {
@@ -64,6 +65,8 @@ function App() {
                         path='/product/:slug'
                         element={<SingleProductPage />}
                      />
+
+                     <Route exact path='/checkout' element={<CheckoutPage />} />
                      <Route path='*' element={<NotFound />} />
                   </Routes>
                </main>
