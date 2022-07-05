@@ -32,8 +32,8 @@ const bodyStyles = css`
       }
 
       &.cart-active {
-         height: calc(85vh + 2px);
-         overflow: hidden;
+         height: 100vh;
+         overflow: clip;
       }
 
       @media screen and (min-width: ${breakpoints.tablet}) {

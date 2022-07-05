@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { addToCart } from '../../redux_toolkit/features/cartSlice';
 import { breakpoints, misc, typography } from '../../styles/theme';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductInfo = ({ product }) => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
-   const { id, slug, name, image, newProduct, description, price } = product;
+   const { id, slug, name, nickname, image, newProduct, description, price } =
+      product;
    const [quantity, setQuantity] = useState(1);
 
    let minQty = 1;
@@ -24,6 +27,12 @@ const ProductInfo = ({ product }) => {
          setQuantity((prev) => prev - 1);
       }
    };
+
+   const notify = (name) => toast(`${name}  added to cart`);
+
+   useEffect(() => {
+      setQuantity(1);
+   }, []);
 
    return (
       <ProductInfoWrap className='container'>
@@ -79,7 +88,7 @@ const ProductInfo = ({ product }) => {
                      className='add-btn'
                      onClick={() => {
                         dispatch(addToCart({ id, slug, product, quantity }));
-                        setQuantity(1);
+                        notify(nickname);
                      }}
                   >
                      Add to Cart
@@ -87,6 +96,18 @@ const ProductInfo = ({ product }) => {
                </AddToCart>
             </div>
          </div>
+         <ToastContainer
+            position='top-right'
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            transition={Zoom}
+         />
       </ProductInfoWrap>
    );
 };
@@ -95,6 +116,10 @@ export default ProductInfo;
 
 const ProductInfoWrap = styled.section`
    padding-top: 5rem;
+
+   /* .Toastify__toast-container {
+      padding-top: 90px;
+   } */
 
    .go-back-btn {
       text-transform: capitalize;

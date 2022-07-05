@@ -11,9 +11,7 @@ const Header = () => {
    const { menuOpen, cartOpen } = useSelector((state) => state.global);
 
    return (
-      <HeaderWrap
-         className={menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null}
-      >
+      <HeaderWrap className={menuOpen ? 'menu-active' : null}>
          <HeaderInner className='container'>
             <MobileMenuBtn />
             <Logo />
@@ -39,7 +37,7 @@ const HeaderWrap = styled.header`
    }
 
    &.cart-active {
-      background: ${(props) => props.theme.black};
+      background: rgba(0, 0, 0, 0.5);
    }
 
    @media screen and (min-width: ${breakpoints.tablet}) {
