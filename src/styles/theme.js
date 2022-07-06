@@ -40,7 +40,7 @@ const breakpoints = {
 const misc = {
    rounded: {
       xs: '5px',
-      sm: '10px',
+      sm: '7px',
       md: '15px',
       lg: '20px',
       full: '999px',

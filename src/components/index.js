@@ -18,8 +18,12 @@ import ProductGallery from './singleProductPage/ProductGallery';
 import ProductInfo from './singleProductPage/ProductInfo';
 import ProductInTheBox from './singleProductPage/ProductInTheBox';
 import YouMayAlsoLike from './singleProductPage/YouMayAlsoLike';
+import GoBackBtn from './shared/GoBackBtn';
+import CheckoutInfo from './checkout/CheckoutInfo';
 
 export {
+   CheckoutInfo,
+   GoBackBtn,
    Seo,
    Cart,
    Loading,

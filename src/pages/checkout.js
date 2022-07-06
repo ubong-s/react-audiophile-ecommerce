@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { BlackBar, Button } from '../components';
+import { BlackBar, Button, CheckoutInfo } from '../components';
 
 const CheckoutPage = () => {
    const { cart } = useSelector((state) => state.cart);
@@ -24,7 +24,7 @@ const CheckoutPage = () => {
                </div>
             </EmptyCart>
          ) : (
-            <>Checkout</>
+            <CheckoutInfo />
          )}
       </>
    );

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { addToCart } from '../../redux_toolkit/features/cartSlice';
 import { breakpoints, misc, typography } from '../../styles/theme';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoBackBtn from '../shared/GoBackBtn';
 
 const ProductInfo = ({ product }) => {
-   const navigate = useNavigate();
    const dispatch = useDispatch();
    const { id, slug, name, nickname, image, newProduct, description, price } =
       product;
@@ -36,13 +35,7 @@ const ProductInfo = ({ product }) => {
 
    return (
       <ProductInfoWrap className='container'>
-         <button
-            type='button'
-            className='go-back-btn'
-            onClick={() => navigate(-1)}
-         >
-            Go Back
-         </button>
+         <GoBackBtn />
          <div className='info-btm'>
             {image ? (
                <div className='image'>
@@ -97,7 +90,7 @@ const ProductInfo = ({ product }) => {
             </div>
          </div>
          <ToastContainer
-            position='top-right'
+            position='bottom-left'
             autoClose={3000}
             hideProgressBar
             newestOnTop={false}
@@ -120,15 +113,6 @@ const ProductInfoWrap = styled.section`
    /* .Toastify__toast-container {
       padding-top: 90px;
    } */
-
-   .go-back-btn {
-      text-transform: capitalize;
-      color: ${(props) => props.theme.text};
-
-      &:hover {
-         color: ${(props) => props.theme.accent};
-      }
-   }
 
    .info-btm {
       display: grid;

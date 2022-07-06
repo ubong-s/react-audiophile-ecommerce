@@ -6,6 +6,7 @@ import { Footer, Header, Loading, Cart } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
 import { updateCartTotals } from './redux_toolkit/features/cartSlice';
+import Example from './pages/example';
 // import SingleProductPage from './pages/product';
 
 // Pages
@@ -67,6 +68,7 @@ function App() {
                      />
 
                      <Route exact path='/checkout' element={<CheckoutPage />} />
+                     <Route exact path='/example' element={<Example />} />
                      <Route path='*' element={<NotFound />} />
                   </Routes>
                </main>

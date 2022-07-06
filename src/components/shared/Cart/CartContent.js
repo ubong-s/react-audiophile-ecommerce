@@ -46,7 +46,9 @@ const CartContent = () => {
                      <img src={image} alt={name} />
                      <div>
                         <h4>{name}</h4>
-                        <p>${new Intl.NumberFormat().format(price)}</p>
+                        <p className='price'>
+                           ${new Intl.NumberFormat().format(price)}
+                        </p>
                      </div>
 
                      <div
@@ -134,6 +136,7 @@ const CartContentWrap = styled.div`
          display: flex;
          align-items: center;
          justify-content: space-between;
+         font-weight: ${typography.weight.semibold};
 
          span:last-of-type {
             font-weight: ${typography.weight.bold};
@@ -166,6 +169,10 @@ const CartItem = styled.li`
 
    h4 {
       margin-bottom: 0.15rem;
+   }
+
+   .price {
+      font-weight: ${typography.weight.semibold};
    }
 
    p {
