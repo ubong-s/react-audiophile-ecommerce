@@ -24,7 +24,6 @@ function App() {
       global: { menuOpen, cartOpen, modalOpen },
       cart: { cart },
    } = useSelector((state) => state);
-   console.log(location.key);
 
    useEffect(() => {
       dispatch(fetchProducts());

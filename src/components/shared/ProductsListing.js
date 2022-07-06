@@ -20,23 +20,25 @@ const ProductsListing = ({ products = [] }) => {
 
                return (
                   <Product key={id}>
-                     <div className='image'>
-                        <img
-                           src={archiveImage.mobile}
-                           alt={name}
-                           className='mobile'
-                        />
-                        <img
-                           src={archiveImage.tablet}
-                           alt={name}
-                           className='tablet'
-                        />
-                        <img
-                           src={archiveImage.desktop}
-                           alt={name}
-                           className='desktop'
-                        />
-                     </div>
+                     {archiveImage && (
+                        <div className='image'>
+                           <img
+                              src={archiveImage.mobile}
+                              alt={name}
+                              className='mobile'
+                           />
+                           <img
+                              src={archiveImage.tablet}
+                              alt={name}
+                              className='tablet'
+                           />
+                           <img
+                              src={archiveImage.desktop}
+                              alt={name}
+                              className='desktop'
+                           />
+                        </div>
+                     )}
                      <div className='content'>
                         {newProduct ? (
                            <p className='subheader'>New product </p>

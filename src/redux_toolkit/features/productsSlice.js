@@ -19,20 +19,18 @@ export const fetchProducts = createAsyncThunk(
    }
 );
 
-export const fetchSingleProduct = createAsyncThunk(
-   'products/fetchSingleProduct',
-   async (query) => {
-      const res = await fetch(`${URI}?slug=${query}`);
-
-      const result = await res.json();
-      return result[0];
-   }
-);
-
 export const productsSlice = createSlice({
    name: 'products',
    initialState,
-   reducers: {},
+   reducers: {
+      fetchSingleProduct: (state, action) => {
+         const tempProduct = state.allProducts.find(
+            (product) => product.slug === action.payload
+         );
+
+         state.single_product = tempProduct;
+      },
+   },
    extraReducers(builder) {
       builder
          .addCase(fetchProducts.pending, (state) => {
@@ -41,31 +39,16 @@ export const productsSlice = createSlice({
          .addCase(fetchProducts.fulfilled, (state, action) => {
             state.loading = false;
 
-            state.allProducts = action.payload;
+            state.allProducts = action.payload.products;
          })
          .addCase(fetchProducts.rejected, (state) => {
             state.loading = false;
             state.error = `Error fetching products`;
-         })
-         .addCase(fetchSingleProduct.pending, (state) => {
-            state.single_product_loading = true;
-         })
-         .addCase(fetchSingleProduct.fulfilled, (state, action) => {
-            state.single_product_loading = false;
-            if (!action.payload) {
-               state.single_product_error = `Error fetching product`;
-            } else {
-               state.single_product = action.payload;
-            }
-         })
-         .addCase(fetchSingleProduct.rejected, (state) => {
-            state.single_product_loading = false;
-            state.single_product_error = `Error fetching product`;
          });
    },
 });
 
 // Action creators are generated for each case reducer function
-export const {} = productsSlice.actions;
+export const { fetchSingleProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

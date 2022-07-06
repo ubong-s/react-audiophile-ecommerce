@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { breakpoints, typography } from '../../styles/theme';
 
-const ProductFeatures = ({ features, box_items }) => {
+const ProductFeatures = ({ features, box_items = [] }) => {
    return (
       <ProductFeaturesWrap className='container'>
          <div className='features'>
@@ -12,11 +12,12 @@ const ProductFeatures = ({ features, box_items }) => {
          <div className='box_items'>
             <h2>In the box</h2>
             <ul>
-               {box_items?.map((item, index) => (
-                  <li key={index}>
-                     <span>{item.quantity}X</span> {item.item}
-                  </li>
-               ))}
+               {box_items.length > 0 &&
+                  box_items?.map((item, index) => (
+                     <li key={index}>
+                        <span>{item.quantity}X</span> {item.item}
+                     </li>
+                  ))}
             </ul>
          </div>
       </ProductFeaturesWrap>

@@ -1,12 +1,18 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 import { BlackBar, Button, Seo } from '../components';
 import { breakpoints } from '../styles/theme';
 
 const NotFound = () => {
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title='404' />
          <BlackBar />
          <NotFoundWrap>
@@ -18,7 +24,7 @@ const NotFound = () => {
                </Link>
             </div>
          </NotFoundWrap>
-      </>
+      </motion.div>
    );
 };
 

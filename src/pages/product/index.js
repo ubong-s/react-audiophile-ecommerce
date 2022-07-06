@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { BestGear, BlackBar, CategoriesGrid, Seo } from '../../components';
 import { fetchSingleProduct } from '../../redux_toolkit/features/productsSlice';
@@ -10,44 +11,34 @@ import {
    YouMayAlsoLike,
 } from '../../components';
 import styled from 'styled-components';
+import { fadeIn } from '../../animations';
 
 const SingleProductPage = () => {
    const { slug } = useParams();
    const dispatch = useDispatch();
 
-   const navigate = useNavigate();
-   const {
-      single_product_loading: loading,
-      single_product_error: error,
-      single_product: product,
-   } = useSelector((state) => state.products);
+   const { single_product: product } = useSelector((state) => state.products);
 
    useEffect(() => {
       dispatch(fetchSingleProduct(slug));
       // eslint-disable-next-line
    }, [slug]);
 
-   useEffect(() => {
-      if (error) {
-         setTimeout(() => {
-            navigate('/');
-         }, 3000);
-      }
-      // eslint-disable-next-line
-   }, [error]);
-
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title={product?.name} />
          <BlackBar />
-         {loading ? (
-            <Loading />
-         ) : product ? (
+         {product ? (
             <ProductDataRoot>
                <ProductInfo product={product} />
                <ProductFeatures
-                  features={product.features}
-                  box_items={product.includes}
+                  features={product?.features}
+                  box_items={product?.includes}
                />
 
                <ProductGallery name={product.name} gallery={product.gallery} />
@@ -56,16 +47,11 @@ const SingleProductPage = () => {
          ) : null}
          <CategoriesGrid />
          <BestGear />
-      </>
+      </motion.div>
    );
 };
 
 export default SingleProductPage;
-
-const Loading = styled.div`
-   width: 100%;
-   height: 85vh;
-`;
 
 const ProductDataRoot = styled.div`
    width: 100%;

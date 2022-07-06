@@ -1,13 +1,20 @@
+import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { fadeIn } from '../animations';
 import { BlackBar, Button, CheckoutInfo } from '../components';
 
 const CheckoutPage = () => {
    const { cart } = useSelector((state) => state.cart);
 
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <BlackBar />
 
          {cart.length < 1 ? (
@@ -26,7 +33,7 @@ const CheckoutPage = () => {
          ) : (
             <CheckoutInfo />
          )}
-      </>
+      </motion.div>
    );
 };
 

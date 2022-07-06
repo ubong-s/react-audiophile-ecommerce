@@ -1,4 +1,5 @@
-import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 import {
    Hero,
    CategoriesGrid,
@@ -11,7 +12,12 @@ import {
 
 const HomePage = () => {
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo />
          <Hero />
          <CategoriesGrid page='true' />
@@ -19,7 +25,7 @@ const HomePage = () => {
          <ZX7Speaker />
          <YX1Earphones />
          <BestGear />
-      </>
+      </motion.div>
    );
 };
 
