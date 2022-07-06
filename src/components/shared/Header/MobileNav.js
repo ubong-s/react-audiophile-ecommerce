@@ -4,13 +4,21 @@ import { breakpoints, misc } from '../../../styles/theme';
 import CategoriesGrid from '../CategoriesGrid';
 
 const MobileNav = () => {
-   const { menuOpen, cartOpen } = useSelector((state) => state.global);
+   const { menuOpen, cartOpen, modalOpen } = useSelector(
+      (state) => state.global
+   );
 
    return (
       <>
          <MobileNavWrap
             className={
-               menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null
+               menuOpen
+                  ? 'menu-active'
+                  : cartOpen
+                  ? 'cart-active'
+                  : modalOpen
+                  ? 'modal-active'
+                  : null
             }
          >
             <CategoriesGrid click='true' />
@@ -41,7 +49,8 @@ const MobileNavWrap = styled.nav`
       transform: translateX(0);
    }
 
-   &.cart-active {
+   &.cart-active,
+   &.modal-active {
       opacity: 0;
       display: none;
    }

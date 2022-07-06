@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
    menuOpen: false,
    cartOpen: false,
+   modalOpen: false,
 };
 
 export const globalSlice = createSlice({
@@ -23,11 +24,25 @@ export const globalSlice = createSlice({
       closeCart: (state) => {
          state.cartOpen = false;
       },
+      openModal: (state) => {
+         state.menuOpen = false;
+         state.cartOpen = false;
+         state.modalOpen = true;
+      },
+      closeModal: (state) => {
+         state.modalOpen = false;
+      },
    },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleMenu, closeMenu, toggleCart, closeCart } =
-   globalSlice.actions;
+export const {
+   toggleMenu,
+   closeMenu,
+   toggleCart,
+   closeCart,
+   openModal,
+   closeModal,
+} = globalSlice.actions;
 
 export default globalSlice.reducer;

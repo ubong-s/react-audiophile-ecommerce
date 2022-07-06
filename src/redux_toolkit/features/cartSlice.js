@@ -13,6 +13,7 @@ const initialState = {
    total_amount: 0,
    shipping_fee: 50,
    vat: 0,
+   grand_total: 0,
 };
 
 export const cartSlice = createSlice({
@@ -77,6 +78,8 @@ export const cartSlice = createSlice({
          state.total_items = total_items;
          state.total_amount = total_amount;
          state.vat = 0.2 * total_amount;
+         state.grand_total =
+            state.total_amount + state.shipping_fee + state.vat;
       },
 
       toggleCartItemAmount: (state, action) => {

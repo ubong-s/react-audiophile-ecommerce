@@ -4,7 +4,7 @@ import { breakpoints, misc, typography } from '../../styles/theme';
 import Button from '../shared/Button';
 
 const CheckoutSummary = () => {
-   const { cart, total_amount, shipping_fee, vat } = useSelector(
+   const { cart, total_amount, shipping_fee, vat, grand_total } = useSelector(
       (state) => state.cart
    );
 
@@ -44,10 +44,7 @@ const CheckoutSummary = () => {
             <p className='grand-total'>
                Grand total
                <span>
-                  $
-                  {new Intl.NumberFormat().format(
-                     (total_amount + shipping_fee + vat).toFixed(0)
-                  )}
+                  ${new Intl.NumberFormat().format(grand_total.toFixed(0))}
                </span>
             </p>
          </Totals>
@@ -60,7 +57,7 @@ const CheckoutSummary = () => {
 
 export default CheckoutSummary;
 
-const CheckoutSummaryWrap = styled.div`
+const CheckoutSummaryWrap = styled.aside`
    background-color: ${(props) => props.theme.white};
    border-radius: ${misc.rounded.sm};
    padding: 2rem 1rem;
@@ -81,6 +78,10 @@ const CheckoutSummaryWrap = styled.div`
 
    @media screen and (min-width: ${breakpoints.tablet}) {
       padding: 2rem;
+   }
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      position: sticky;
+      top: 1.5rem;
    }
 `;
 

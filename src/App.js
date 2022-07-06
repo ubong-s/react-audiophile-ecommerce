@@ -6,8 +6,6 @@ import { Footer, Header, Loading, Cart } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
 import { updateCartTotals } from './redux_toolkit/features/cartSlice';
-import Example from './pages/example';
-// import SingleProductPage from './pages/product';
 
 // Pages
 const HomePage = lazy(() => import('./pages'));
@@ -22,7 +20,7 @@ function App() {
    const dispatch = useDispatch();
    const location = useLocation();
    const {
-      global: { menuOpen, cartOpen },
+      global: { menuOpen, cartOpen, modalOpen },
       cart: { cart },
    } = useSelector((state) => state);
 
@@ -47,10 +45,17 @@ function App() {
             <Suspense fallback={<Loading />}>
                <GlobalStyles />
                <Cart />
+
                <Header />
                <main
                   className={
-                     menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null
+                     menuOpen
+                        ? 'menu-active'
+                        : cartOpen
+                        ? 'cart-active'
+                        : modalOpen
+                        ? 'modal-active'
+                        : null
                   }
                >
                   <Routes>
@@ -68,7 +73,6 @@ function App() {
                      />
 
                      <Route exact path='/checkout' element={<CheckoutPage />} />
-                     <Route exact path='/example' element={<Example />} />
                      <Route path='*' element={<NotFound />} />
                   </Routes>
                </main>

@@ -7,11 +7,21 @@ import { socials } from '../../constants/socials';
 import { useSelector } from 'react-redux';
 
 const Footer = () => {
-   const { menuOpen, cartOpen } = useSelector((state) => state.global);
+   const { menuOpen, cartOpen, modalOpen } = useSelector(
+      (state) => state.global
+   );
 
    return (
       <FooterWrap
-         className={menuOpen ? 'menu-active' : cartOpen ? 'cart-active' : null}
+         className={
+            menuOpen
+               ? 'menu-active'
+               : cartOpen
+               ? 'cart-active'
+               : modalOpen
+               ? 'modal-active'
+               : null
+         }
       >
          <FooterInner className='container'>
             <div className='orange-bar'></div>
@@ -81,7 +91,8 @@ const FooterWrap = styled.footer`
       overflow: hidden;
    }
 
-   &.cart-active {
+   &.cart-active,
+   &.modal-active {
       display: none;
    }
 

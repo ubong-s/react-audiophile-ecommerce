@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import styled from 'styled-components';
+import { openModal } from '../../redux_toolkit/features/globalSlice';
 import { breakpoints, misc, typography } from '../../styles/theme';
+import { useDispatch } from 'react-redux';
 
 const validate = (values) => {
    let errors = {};
@@ -57,6 +59,8 @@ const validate = (values) => {
 };
 
 const CheckoutForm = () => {
+   const dispatch = useDispatch();
+
    return (
       <CheckoutFormWrap>
          <h1>Checkout</h1>
@@ -77,7 +81,7 @@ const CheckoutForm = () => {
             validate={validate}
             onSubmit={async (values) => {
                await new Promise((r) => setTimeout(r, 500));
-               alert(JSON.stringify(values, null, 2));
+               dispatch(openModal());
             }}
             // onReset
          >
@@ -340,6 +344,12 @@ const CheckoutFormWrap = styled.div`
 
    @media screen and (min-width: ${breakpoints.tablet}) {
       padding: 3rem 2rem;
+   }
+
+   @media screen and (min-width: ${breakpoints.desktop}) {
+      h1 {
+         font-size: 2.25rem;
+      }
    }
 `;
 

@@ -31,9 +31,17 @@ const bodyStyles = css`
          overflow: hidden;
       }
 
+      &.modal-active,
       &.cart-active {
          height: 100vh;
          overflow: clip;
+
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+
+         &::-webkit-scrollbar {
+            display: none;
+         }
       }
 
       @media screen and (min-width: ${breakpoints.tablet}) {
