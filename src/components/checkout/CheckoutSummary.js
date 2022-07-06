@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { breakpoints, misc, typography } from '../../styles/theme';
-import Button from '../shared/Button';
 
 const CheckoutSummary = () => {
    const { cart, total_amount, shipping_fee, vat, grand_total } = useSelector(
