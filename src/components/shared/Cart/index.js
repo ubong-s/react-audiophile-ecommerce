@@ -31,10 +31,10 @@ export default Cart;
 const CartWrap = styled.div`
    position: fixed;
    left: 0;
-   top: 90px;
+   top: 0;
    height: 100%;
    width: 100%;
-   z-index: 1000;
+   z-index: 999;
    overflow: hidden;
    transition: ${misc.transition.ease};
    opacity: 1;
@@ -74,7 +74,7 @@ const CartBox = styled.div`
    gap: 1rem;
    right: 0;
    max-width: 400px;
-   top: 1rem;
+   top: calc(91px + 1rem);
    padding: 1.5rem;
    background-color: ${(props) => props.theme.white};
    border-radius: ${misc.rounded.sm};

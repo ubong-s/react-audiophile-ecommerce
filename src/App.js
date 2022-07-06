@@ -6,6 +6,7 @@ import { Footer, Header, Loading, Cart } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './redux_toolkit/features/productsSlice';
 import { updateCartTotals } from './redux_toolkit/features/cartSlice';
+import { AnimatePresence } from 'framer-motion';
 
 // Pages
 const HomePage = lazy(() => import('./pages'));
@@ -23,6 +24,7 @@ function App() {
       global: { menuOpen, cartOpen, modalOpen },
       cart: { cart },
    } = useSelector((state) => state);
+   console.log(location.key);
 
    useEffect(() => {
       dispatch(fetchProducts());
@@ -42,42 +44,48 @@ function App() {
    return (
       <>
          <Theme>
-            <Suspense fallback={<Loading />}>
-               <GlobalStyles />
-               <Cart />
+            <AnimatePresence exitBeforeEnter>
+               <Suspense fallback={<Loading />}>
+                  <GlobalStyles />
+                  <Cart />
 
-               <Header />
-               <main
-                  className={
-                     menuOpen
-                        ? 'menu-active'
-                        : cartOpen
-                        ? 'cart-active'
-                        : modalOpen
-                        ? 'modal-active'
-                        : null
-                  }
-               >
-                  <Routes>
-                     <Route exact path='/' element={<HomePage />} />
-                     <Route
-                        exact
-                        path='/products/:category'
-                        element={<ProductCategories />}
-                     />
+                  <Header />
+                  <main
+                     className={
+                        menuOpen
+                           ? 'menu-active'
+                           : cartOpen
+                           ? 'cart-active'
+                           : modalOpen
+                           ? 'modal-active'
+                           : null
+                     }
+                  >
+                     <Routes location={location} key={location.key}>
+                        <Route exact path='/' element={<HomePage />} />
+                        <Route
+                           exact
+                           path='/products/:category'
+                           element={<ProductCategories />}
+                        />
 
-                     <Route
-                        exact
-                        path='/product/:slug'
-                        element={<SingleProductPage />}
-                     />
+                        <Route
+                           exact
+                           path='/product/:slug'
+                           element={<SingleProductPage />}
+                        />
 
-                     <Route exact path='/checkout' element={<CheckoutPage />} />
-                     <Route path='*' element={<NotFound />} />
-                  </Routes>
-               </main>
-               <Footer />
-            </Suspense>
+                        <Route
+                           exact
+                           path='/checkout'
+                           element={<CheckoutPage />}
+                        />
+                        <Route path='*' element={<NotFound />} />
+                     </Routes>
+                  </main>
+                  <Footer />
+               </Suspense>
+            </AnimatePresence>
          </Theme>
       </>
    );

@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-const URI = 'http://localhost:4000/products';
+import { URI } from '../../constants/fetchURI';
 
 const initialState = {
    loading: false,

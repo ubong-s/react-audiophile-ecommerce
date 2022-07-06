@@ -45,6 +45,7 @@ export default Hero;
 const HeroWrap = styled.section`
    margin-top: -91px;
    position: relative;
+   z-index: -1;
 
    .image {
       img {
@@ -131,4 +132,3 @@ const HeroWrap = styled.section`
       }
    }
 `;
-const HeroInner = styled.div``;

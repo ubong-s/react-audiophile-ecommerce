@@ -3,12 +3,9 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { categories } from '../../../constants/menuNav';
 import { breakpoints } from '../../../styles/theme';
-import { closeCart } from '../../../redux_toolkit/features/globalSlice';
-import { useDispatch } from 'react-redux';
 
 const DesktopNav = () => {
    const location = useLocation();
-   const dispatch = useDispatch();
 
    return (
       <DesktopNavWrap>
@@ -20,7 +17,6 @@ const DesktopNav = () => {
                key={category.id}
                to={category.link}
                className={location.pathname === category.link ? 'active' : null}
-               onClick={() => dispatch(closeCart())}
             >
                {category.title}
             </Link>
@@ -33,6 +29,8 @@ export default DesktopNav;
 
 const DesktopNavWrap = styled.nav`
    display: none;
+   position: relative;
+   z-index: 2;
 
    @media screen and (min-width: ${breakpoints.desktop}) {
       display: flex;

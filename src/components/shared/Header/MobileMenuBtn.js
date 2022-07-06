@@ -37,6 +37,7 @@ export default MobileMenuBtn;
 
 const MobileMenuBtnWrap = styled.button`
    position: relative;
+   z-index: 999;
 
    .burger {
       position: absolute;

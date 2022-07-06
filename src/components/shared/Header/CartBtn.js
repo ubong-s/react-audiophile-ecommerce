@@ -32,7 +32,7 @@ export default CartBtn;
 
 const CartBtnWrap = styled.button`
    position: relative;
-   z-index: 1000;
+   z-index: 999;
    line-height: 0;
 
    .cart-value {
