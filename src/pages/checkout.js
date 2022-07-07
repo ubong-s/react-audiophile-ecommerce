@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fadeIn } from '../animations';
-import { BlackBar, Button, CheckoutInfo } from '../components';
+import { BlackBar, Button, CheckoutInfo, Seo } from '../components';
 
 const CheckoutPage = () => {
    const { cart } = useSelector((state) => state.cart);
@@ -15,6 +15,7 @@ const CheckoutPage = () => {
          animate='animate'
          exit='exit'
       >
+         <Seo title='Checkout' />
          <BlackBar />
 
          {cart.length < 1 ? (
